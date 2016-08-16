@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
+using RedirectService.DataService;
 
 namespace RedirectService
 {
@@ -22,8 +20,14 @@ namespace RedirectService
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Status = "301 Moved Permanently";
-            HttpContext.Current.Response.AddHeader("Location", "http://google.com");
+            string fullUrl;
+            var shortUrl = HttpContext.Current.Request.Url.ToString().Split('/').Last();
+            using (var service = new DataServiceClient())
+            {
+                fullUrl = service.IncrementLink(shortUrl);
+            }
+            HttpContext.Current.Response.Status = "302 Found";
+            HttpContext.Current.Response.AddHeader("Location", fullUrl);
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)

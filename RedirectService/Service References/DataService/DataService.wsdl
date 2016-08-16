@@ -31,12 +31,6 @@
       <xsd:import schemaLocation="http://luxoftdataservice.gear.host/DataService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IDataService_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
-  </wsdl:message>
-  <wsdl:message name="IDataService_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
-  </wsdl:message>
   <wsdl:message name="IDataService_GetUserLinks_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserLinks" />
   </wsdl:message>
@@ -49,11 +43,13 @@
   <wsdl:message name="IDataService_InsertLinkOrCreateUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertLinkOrCreateUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IDataService_IncrementLink_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncrementLink" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_IncrementLink_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncrementLinkResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDataService">
-    <wsdl:operation name="GetData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/GetData" message="tns:IDataService_GetData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/GetDataResponse" message="tns:IDataService_GetData_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetUserLinks">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataService/GetUserLinks" message="tns:IDataService_GetUserLinks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataService/GetUserLinksResponse" message="tns:IDataService_GetUserLinks_OutputMessage" />
@@ -62,18 +58,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDataService/InsertLinkOrCreateUser" message="tns:IDataService_InsertLinkOrCreateUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataService/InsertLinkOrCreateUserResponse" message="tns:IDataService_InsertLinkOrCreateUser_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="IncrementLink">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/IncrementLink" message="tns:IDataService_IncrementLink_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/IncrementLinkResponse" message="tns:IDataService_IncrementLink_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataService" type="tns:IDataService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetData">
-      <soap:operation soapAction="http://tempuri.org/IDataService/GetData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetUserLinks">
       <soap:operation soapAction="http://tempuri.org/IDataService/GetUserLinks" style="document" />
       <wsdl:input>
@@ -85,6 +76,15 @@
     </wsdl:operation>
     <wsdl:operation name="InsertLinkOrCreateUser">
       <soap:operation soapAction="http://tempuri.org/IDataService/InsertLinkOrCreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncrementLink">
+      <soap:operation soapAction="http://tempuri.org/IDataService/IncrementLink" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -96,15 +96,6 @@
   <wsdl:binding name="BasicHttpsBinding_IDataService" type="tns:IDataService">
     <wsp:PolicyReference URI="#BasicHttpsBinding_IDataService_policy" />
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetData">
-      <soap:operation soapAction="http://tempuri.org/IDataService/GetData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetUserLinks">
       <soap:operation soapAction="http://tempuri.org/IDataService/GetUserLinks" style="document" />
       <wsdl:input>
@@ -116,6 +107,15 @@
     </wsdl:operation>
     <wsdl:operation name="InsertLinkOrCreateUser">
       <soap:operation soapAction="http://tempuri.org/IDataService/InsertLinkOrCreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncrementLink">
+      <soap:operation soapAction="http://tempuri.org/IDataService/IncrementLink" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

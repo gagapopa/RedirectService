@@ -15,12 +15,6 @@ namespace RedirectService.DataService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.IDataService")]
     public interface IDataService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/GetData", ReplyAction="http://tempuri.org/IDataService/GetDataResponse")]
-        string GetData(int value);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/GetData", ReplyAction="http://tempuri.org/IDataService/GetDataResponse")]
-        System.Threading.Tasks.Task<string> GetDataAsync(int value);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/GetUserLinks", ReplyAction="http://tempuri.org/IDataService/GetUserLinksResponse")]
         string GetUserLinks(string guid);
         
@@ -32,6 +26,12 @@ namespace RedirectService.DataService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/InsertLinkOrCreateUser", ReplyAction="http://tempuri.org/IDataService/InsertLinkOrCreateUserResponse")]
         System.Threading.Tasks.Task<string> InsertLinkOrCreateUserAsync(string fullLink, System.Nullable<int> userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/IncrementLink", ReplyAction="http://tempuri.org/IDataService/IncrementLinkResponse")]
+        string IncrementLink(string linkId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/IncrementLink", ReplyAction="http://tempuri.org/IDataService/IncrementLinkResponse")]
+        System.Threading.Tasks.Task<string> IncrementLinkAsync(string linkId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -61,14 +61,6 @@ namespace RedirectService.DataService {
                 base(binding, remoteAddress) {
         }
         
-        public string GetData(int value) {
-            return base.Channel.GetData(value);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetDataAsync(int value) {
-            return base.Channel.GetDataAsync(value);
-        }
-        
         public string GetUserLinks(string guid) {
             return base.Channel.GetUserLinks(guid);
         }
@@ -83,6 +75,14 @@ namespace RedirectService.DataService {
         
         public System.Threading.Tasks.Task<string> InsertLinkOrCreateUserAsync(string fullLink, System.Nullable<int> userId) {
             return base.Channel.InsertLinkOrCreateUserAsync(fullLink, userId);
+        }
+        
+        public string IncrementLink(string linkId) {
+            return base.Channel.IncrementLink(linkId);
+        }
+        
+        public System.Threading.Tasks.Task<string> IncrementLinkAsync(string linkId) {
+            return base.Channel.IncrementLinkAsync(linkId);
         }
     }
 }
